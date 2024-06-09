@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock, Paper, Scissors Game</title>
+    <script>
+        let cnt1 = 0;
+        let cnt2 = 0;
+
+        function winner(p1, p2) {
+            if (p1 == 1 && p2 == 2) {
+                cnt2++;
+            } else if (p1 == 1 && p2 == 3) {
+                cnt1++;
+            } else if (p1 == 2 && p2 == 1) {
+                cnt1++;
+            } else if (p1 == 2 && p2 == 3) {
+                cnt2++;
+            } else if (p1 == 3 && p2 == 1) {
+                cnt2++;
+            } else if (p1 == 3 && p2 == 2) {
+                cnt1++;
+            } else if (p1 == p2) {
+                cnt1++;
+                cnt2++;
+            }
+        }
+
+        function playGame() {
+            const name = prompt("Enter your name (Player 1):");
+            let i = 0;
+
+            alert("Player 2 is Computer");
+
+            while (i < 3) {
+                const p1 = parseInt(prompt("Choose any one option:\n1. Scissor\n2. Rock\n3. Paper"));
+                const p2 = Math.floor(Math.random() * 3) + 1;
+
+                const choices = ["Scissor", "Rock", "Paper"];
+
+                if (p1 < 1 || p1 > 3 || isNaN(p1)) {
+                    alert("Invalid choice. Please choose 1, 2, or 3.");
+                    continue;
+                }
+
+                alert(`You chose: ${choices[p1 - 1]}\nComputer chose: ${choices[p2 - 1]}`);
+
+                winner(p1, p2);
+
+                alert(`Player 1 points: ${cnt1}\nPlayer 2 points: ${cnt2}`);
+                i++;
+            }
+
+            if (cnt1 > cnt2) {
+                alert(`Congratulations, ${name}! You are the winner with ${cnt1} points.`);
+            } else if (cnt1 == cnt2) {
+                alert("The game is a tie.");
+            } else {
+                alert(`Sorry, ${name}. You lose with ${cnt1} points.`);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Rock, Paper, Scissors Game</h1>
+    <button onclick="playGame()">Start Game</button>
+</body>
+</html>
